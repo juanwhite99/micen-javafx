@@ -1,0 +1,204 @@
+-- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
+--
+-- Host: localhost    Database: micen_test
+-- ------------------------------------------------------
+-- Server version	5.6.27-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `material_info`
+--
+
+DROP TABLE IF EXISTS `material_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `material_info` (
+  `Part_number` varchar(100) NOT NULL,
+  `Material_Type` varchar(50) NOT NULL,
+  `Material_TypeAbbrev` varchar(15) DEFAULT NULL,
+  `Material_Classif` varchar(50) NOT NULL,
+  `Material_ClassifAbbrev` varchar(15) DEFAULT NULL,
+  `Material_Description` varchar(500) NOT NULL,
+  `MeasureUnit` varchar(20) NOT NULL,
+  `FKproyect` varchar(45) NOT NULL,
+  `Material_status` varchar(45) NOT NULL,
+  `Material_qty` int(11) NOT NULL,
+  `Material_vendorID` varchar(45) NOT NULL,
+  `material_unitprice` int(11) NOT NULL,
+  `material_currencyprice` varchar(10) NOT NULL,
+  PRIMARY KEY (`Part_number`),
+  UNIQUE KEY `Part_number_UNIQUE` (`Part_number`),
+  UNIQUE KEY `Material_vendorID_UNIQUE` (`Material_vendorID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `material_info`
+--
+
+LOCK TABLES `material_info` WRITE;
+/*!40000 ALTER TABLE `material_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `material_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `movement_info`
+--
+
+DROP TABLE IF EXISTS `movement_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movement_info` (
+  `ID_Movement` int(11) NOT NULL AUTO_INCREMENT,
+  `movement_typekey` varchar(25) NOT NULL,
+  `Movement_typedescription` varchar(500) NOT NULL,
+  PRIMARY KEY (`ID_Movement`),
+  UNIQUE KEY `ID_Movement_UNIQUE` (`ID_Movement`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movement_info`
+--
+
+LOCK TABLES `movement_info` WRITE;
+/*!40000 ALTER TABLE `movement_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `movement_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `project_info`
+--
+
+DROP TABLE IF EXISTS `project_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `project_info` (
+  `ID_Project` varchar(45) NOT NULL,
+  `Project_Name` varchar(50) NOT NULL,
+  `Project_Desc` varchar(500) NOT NULL,
+  `Project_status` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID_Project`),
+  UNIQUE KEY `ProjectName_UNIQUE` (`Project_Name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `project_info`
+--
+
+LOCK TABLES `project_info` WRITE;
+/*!40000 ALTER TABLE `project_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `project_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_accs`
+--
+
+DROP TABLE IF EXISTS `user_accs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_accs` (
+  `ID_user` varchar(50) NOT NULL,
+  `log_user` varchar(60) NOT NULL,
+  `log_pass` varchar(60) NOT NULL,
+  `user_rol` varchar(80) NOT NULL,
+  `user_Authority` int(11) NOT NULL,
+  `user_Name` varchar(45) NOT NULL,
+  `user_CompanyArea` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_accs`
+--
+
+LOCK TABLES `user_accs` WRITE;
+/*!40000 ALTER TABLE `user_accs` DISABLE KEYS */;
+INSERT INTO `user_accs` VALUES ('00000000','Admin','0000','God',0,'God','DB Admin');
+/*!40000 ALTER TABLE `user_accs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vendor_info`
+--
+
+DROP TABLE IF EXISTS `vendor_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vendor_info` (
+  `ID_vendor` varchar(25) NOT NULL,
+  `Vendor_company` varchar(100) NOT NULL,
+  `Vendor_descrip` varchar(500) DEFAULT NULL,
+  `Vendor_adress` varchar(45) DEFAULT NULL,
+  `Vendor_rfc` varchar(50) NOT NULL,
+  `Vendor_irs` varchar(50) NOT NULL,
+  `Vendor_remarks` varchar(500) DEFAULT NULL,
+  `Vendor_contactname` varchar(100) NOT NULL,
+  `Vendor_contactPhoneNumber` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID_vendor`),
+  UNIQUE KEY `ID_vendor_UNIQUE` (`ID_vendor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vendor_info`
+--
+
+LOCK TABLES `vendor_info` WRITE;
+/*!40000 ALTER TABLE `vendor_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vendor_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `wharehouse_info`
+--
+
+DROP TABLE IF EXISTS `wharehouse_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wharehouse_info` (
+  `ID_whareHouse` varchar(30) NOT NULL,
+  `WhareHouse_status` varchar(20) NOT NULL,
+  `WhareHouse_address` varchar(110) NOT NULL,
+  `WhareHouse_name` varchar(45) NOT NULL,
+  `WhareHouse_LocalityLabel` varchar(30) NOT NULL,
+  `WhareHouse_LocalityLevel` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ID_whareHouse`),
+  UNIQUE KEY `WhareHouse_name_UNIQUE` (`WhareHouse_name`),
+  UNIQUE KEY `ID_whareHouse_UNIQUE` (`ID_whareHouse`),
+  UNIQUE KEY `WhareHouse_LocalityLabel_UNIQUE` (`WhareHouse_LocalityLabel`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wharehouse_info`
+--
+
+LOCK TABLES `wharehouse_info` WRITE;
+/*!40000 ALTER TABLE `wharehouse_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wharehouse_info` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-11-26 21:36:22
